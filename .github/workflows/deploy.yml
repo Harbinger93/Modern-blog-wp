@@ -31,5 +31,5 @@ jobs:
           REMOTE_USER: ${{ secrets.SSH_USER }}
           REMOTE_PORT: ${{ secrets.SSH_PORT }}
           SOURCE: "."
-          TARGET: "public_html/wp-content/themes/modern-blog-wp"
+          TARGET: "wp-content/themes/modern-blog-wp"
           EXCLUDE: "/node_modules/, /src/, /.git/, /.github/"
