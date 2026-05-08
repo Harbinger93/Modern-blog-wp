@@ -1,0 +1,28 @@
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/blogs.dir/
+wp-content/upgrade/
+wp-content/backup-db/
+.htaccess
+sitemap.xml
+sitemap.xml.gz
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / Vite
+node_modules/
+dist/
+assets/js/*.js
+assets/css/*.css
+.env
+.env.local
+
+# Deployment / Security
+.ssh/
+*.pem
+*.key
+godaddy_deploy
+godaddy_deploy.pub

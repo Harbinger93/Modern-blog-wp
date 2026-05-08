@@ -1,0 +1,34 @@
+name: Deploy OVP Theme
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Theme Assets
+        run: npm run build
+
+      - name: Deploy to GoDaddy via SSH
+        uses: easedp/ssh-rsync-action@v1.0.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SOURCE: "."
+          TARGET: "/home/${{ secrets.SSH_USER }}/public_html/wp-content/themes/ovp-theme"
+          ARGS: "-avz --delete --exclude='.git*' --exclude='node_modules' --exclude='src'"
