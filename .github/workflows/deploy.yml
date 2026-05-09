@@ -23,6 +23,18 @@ jobs:
       - name: Build Theme Assets
         run: npm run build
 
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Debug Remote Path
+        run: |
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pwd; ls -F; [ -d public_html ] && echo 'FOUND public_html' || echo 'NOT FOUND public_html'; [ -d httpdocs ] && echo 'FOUND httpdocs' || echo 'NOT FOUND httpdocs'"
+        continue-on-error: true
+
       - name: Deploy to GoDaddy via SSH
         uses: easingthemes/ssh-deploy@main
         with:
@@ -31,5 +43,5 @@ jobs:
           REMOTE_USER: ${{ secrets.SSH_USER }}
           REMOTE_PORT: ${{ secrets.SSH_PORT }}
           SOURCE: "."
-          TARGET: "wp-content/themes/modern-blog-wp"
+          TARGET: "public_html/wp-content/themes/modern-blog-wp"
           EXCLUDE: "/node_modules/, /src/, /.git/, /.github/"
