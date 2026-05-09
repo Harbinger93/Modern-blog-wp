@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-ovp-dark text-slate-100 transition-colors duration-500 overflow-x-hidden !important;
+    @apply bg-[#050b18] text-slate-100 transition-colors duration-500 overflow-x-hidden !important;
   }
 }
 
@@ -25,15 +25,14 @@
   .nav-menu ul li { @apply relative py-6; }
   .nav-menu ul li a { @apply text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 hover:text-ovp-accent transition-all; }
   
-  /* Mega Dropdown Container */
+  /* Mega Dropdown Container - Fixed Class */
   .nav-menu ul li ul.sub-menu {
-    @apply absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-ovp-darker/98 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-6 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)];
+    @apply absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-[#02060f] border border-white/10 rounded-[2rem] p-8 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-6 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)];
   }
   
   .nav-menu ul li:hover ul.sub-menu { @apply opacity-100 visible translate-y-0; }
   
   /* Mega Menu Items */
-  .nav-menu ul li ul.sub-menu li { @apply py-0; }
   .nav-menu ul li ul.sub-menu li a {
     @apply flex flex-col gap-1 p-4 rounded-2xl hover:bg-white/5 border border-transparent hover:border-white/5 transition-all !important;
     text-transform: none !important;
