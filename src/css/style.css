@@ -25,20 +25,12 @@
   .nav-menu ul li { @apply relative py-6; }
   .nav-menu ul li a { @apply text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 hover:text-ovp-accent transition-all; }
   
-  /* Mega Dropdown Container - Deluxe Edition */
+  /* Mega Dropdown Container */
   .nav-menu ul li ul.sub-menu {
     @apply absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-[#02060f] backdrop-blur-[100px] border border-white/10 rounded-[3rem] p-10 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-8 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.9)];
   }
   
   .nav-menu ul li:hover ul.sub-menu { @apply opacity-100 visible translate-y-0; }
-  
-  /* Mega Menu Item Design */
-  .nav-menu ul li ul.sub-menu li { @apply py-0; }
-  .nav-menu ul li ul.sub-menu li a {
-    @apply flex flex-row items-center gap-5 p-5 rounded-3xl hover:bg-ovp-accent/10 border border-transparent hover:border-ovp-accent/20 transition-all !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-  }
   
   /* Mega Menu Icons */
   .nav-menu ul li ul.sub-menu li a::before {
@@ -50,17 +42,15 @@
   .nav-menu ul li ul.sub-menu li:nth-child(2) a::before { content: "📰"; }
   .nav-menu ul li ul.sub-menu li:nth-child(3) a::before { content: "📊"; }
   .nav-menu ul li ul.sub-menu li:nth-child(4) a::before { content: "🖼️"; }
-  .nav-menu ul li ul.sub-menu li:nth-child(5) a::before { content: "⚖️"; }
-  .nav-menu ul li ul.sub-menu li:nth-child(6) a::before { content: "🌍"; }
 
   /* News Card Bento Style */
   .news-card {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] overflow-hidden hover:bg-white/10 hover:border-ovp-accent/30 transition-all duration-500 shadow-2xl;
   }
 
-  /* Vertical Hero Thumbnails Glass */
-  .hero-card-vertical {
-    @apply bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl transition-all duration-500;
+  /* Utility Sections */
+  .section-fusion {
+    @apply relative -mt-20 z-10;
   }
 }
 
