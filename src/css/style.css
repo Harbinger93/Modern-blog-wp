@@ -27,7 +27,7 @@
   
   /* Mega Dropdown Container - Deluxe Edition */
   .nav-menu ul li ul.sub-menu {
-    @apply absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-ovp-darker/98 backdrop-blur-[100px] border border-white/10 rounded-[3rem] p-10 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-8 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.9)];
+    @apply absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-[#02060f] backdrop-blur-[100px] border border-white/10 rounded-[3rem] p-10 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-8 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.9)];
   }
   
   .nav-menu ul li:hover ul.sub-menu { @apply opacity-100 visible translate-y-0; }
@@ -40,13 +40,12 @@
     letter-spacing: normal !important;
   }
   
-  /* Mega Menu Icons (Pure CSS/Unicode for stability) */
+  /* Mega Menu Icons */
   .nav-menu ul li ul.sub-menu li a::before {
     content: "📁";
     @apply text-2xl filter grayscale brightness-200 group-hover:grayscale-0 transition-all;
   }
   
-  /* Custom Icons for specific menu items if needed */
   .nav-menu ul li ul.sub-menu li:nth-child(1) a::before { content: "📚"; }
   .nav-menu ul li ul.sub-menu li:nth-child(2) a::before { content: "📰"; }
   .nav-menu ul li ul.sub-menu li:nth-child(3) a::before { content: "📊"; }
