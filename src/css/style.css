@@ -11,6 +11,36 @@
     @apply bg-black/20 border-white/5;
   }
 
+  /* Navigation Dropdowns */
+  .nav-menu ul li {
+    @apply relative py-4;
+  }
+
+  .nav-menu ul li ul.sub-menu {
+    @apply absolute top-full left-0 w-64 bg-ovp-dark/90 backdrop-blur-xl border border-white/10 rounded-xl p-4 opacity-0 invisible translate-y-2 transition-all duration-300 z-50;
+  }
+
+  .nav-menu ul li:hover ul.sub-menu {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .nav-menu ul li ul.sub-menu li {
+    @apply py-2 border-b border-white/5 last:border-0;
+  }
+
+  .nav-menu ul li ul.sub-menu li a {
+    @apply text-xs text-slate-300 hover:text-ovp-accent transition-colors block;
+  }
+
+  /* Slider Netflix Style */
+  .netflix-slider {
+    @apply relative overflow-hidden;
+  }
+
+  .slider-item {
+    @apply shrink-0 w-full snap-center;
+  }
+
   /* Animated Mesh Gradient Background */
   .mesh-bg {
     background-color: #0f172a;
