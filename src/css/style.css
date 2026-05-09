@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-ovp-dark text-slate-100 transition-colors duration-500 overflow-x-hidden;
+    @apply bg-ovp-dark text-slate-100 transition-colors duration-500 overflow-x-hidden !important;
   }
 }
 
@@ -17,28 +17,38 @@
   }
 
   .glass-card {
-    @apply bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl;
+    @apply bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] shadow-2xl !important;
   }
 
-  /* Slider Netflix/YogaSpot Style */
-  .hero-card {
-    @apply relative shrink-0 w-48 h-28 rounded-xl overflow-hidden border border-white/5 cursor-pointer hover:border-ovp-accent hover:scale-105 transition-all duration-300;
-  }
+  /* Mega Menu Styles */
+  .nav-menu ul { @apply flex items-center gap-10; }
+  .nav-menu ul li { @apply relative py-6; }
+  .nav-menu ul li a { @apply text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 hover:text-ovp-accent transition-all; }
   
-  .hero-card.active {
-    @apply border-ovp-accent ring-2 ring-ovp-accent/50;
-  }
-
-  /* Navigation Dropdowns */
-  .nav-menu ul { @apply flex items-center gap-6; }
-  .nav-menu ul li { @apply relative py-4; }
-  .nav-menu ul li a { @apply text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-all; }
-  
+  /* Mega Dropdown Container */
   .nav-menu ul li ul.sub-menu {
-    @apply absolute top-full left-0 w-64 bg-ovp-darker/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 opacity-0 invisible translate-y-4 transition-all duration-300 z-[100];
+    @apply absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-ovp-darker/98 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-6 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)];
   }
+  
   .nav-menu ul li:hover ul.sub-menu { @apply opacity-100 visible translate-y-0; }
-  .nav-menu ul li ul.sub-menu li a { @apply block py-3 px-4 rounded-xl hover:bg-white/5 text-[8px]; }
+  
+  /* Mega Menu Items */
+  .nav-menu ul li ul.sub-menu li { @apply py-0; }
+  .nav-menu ul li ul.sub-menu li a {
+    @apply flex flex-col gap-1 p-4 rounded-2xl hover:bg-white/5 border border-transparent hover:border-white/5 transition-all !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+  }
+  
+  .nav-menu ul li ul.sub-menu li a::before {
+    content: "→";
+    @apply text-ovp-accent font-bold text-lg mb-2;
+  }
+
+  /* Card Fixes */
+  .news-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden hover:bg-white/10 transition-all duration-500;
+  }
 }
 
 @keyframes gradient-x {

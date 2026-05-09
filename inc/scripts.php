@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function ovp_enqueue_assets() {
     // Production Assets
-    wp_enqueue_style( 'modern-blog-style', MODERN_BLOG_URI . '/assets/css/style.css', array(), MODERN_BLOG_VERSION );
-    wp_enqueue_script( 'modern-blog-js', MODERN_BLOG_URI . '/assets/js/main.js', array(), MODERN_BLOG_VERSION, true );
+    wp_enqueue_style( 'modern-blog-style', MODERN_BLOG_URI . '/assets/css/style.css', array(), time() );
+    wp_enqueue_script( 'modern-blog-scripts', MODERN_BLOG_URI . '/assets/js/main.js', array(), time(), true );
 
     // Inline Dark Mode & Header Script
     wp_add_inline_script( 'modern-blog-js', "
