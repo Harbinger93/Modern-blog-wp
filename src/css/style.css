@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 transition-colors duration-500 overflow-x-hidden;
+    @apply bg-white text-slate-900 transition-colors duration-500 overflow-x-hidden;
   }
   
   .dark body {
@@ -13,64 +13,57 @@
 }
 
 @layer components {
-  /* Animated Mesh Gradient */
-  .animated-mesh {
-    background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #e2e8f0, #f8fafc);
-    background-size: 400% 400%;
-    animation: gradient-x 15s ease infinite;
+  /* Dynamic Header Text */
+  .nav-menu ul li a { 
+    @apply text-[11px] font-black uppercase tracking-[0.2em] text-slate-900 transition-all !important; 
+  }
+  .dark .nav-menu ul li a { 
+    @apply text-white hover:text-ovp-accent !important; 
   }
 
-  .dark .animated-mesh {
-    background: linear-gradient(-45deg, #050b18, #0a1e3d, #0f172a, #1e3a8a, #050b18);
-    background-size: 400% 400%;
+  /* Header Glass Morphism - Fixed */
+  header .glass-card {
+    @apply bg-white/70 border-slate-200 shadow-lg !important;
+  }
+  .dark header .glass-card {
+    @apply bg-ovp-darker/60 border-white/10 shadow-2xl !important;
   }
 
-  /* Glass Cards Reactive */
+  /* Hero Content Fix */
+  .slide-content h2, .slide-content p {
+    @apply opacity-100 translate-y-0 !important;
+  }
+
+  /* Section Backgrounds */
+  .section-light { @apply bg-white; }
+  .dark .section-light { @apply bg-[#050b18]; }
+
+  .section-alt { @apply bg-slate-50; }
+  .dark .section-alt { @apply bg-ovp-darker/50; }
+
+  /* Glass Cards Deluxe */
   .glass-card {
-    @apply bg-white/80 backdrop-blur-3xl border border-slate-200 rounded-[2.5rem] shadow-xl transition-all duration-500 !important;
+    @apply bg-white border border-slate-200 rounded-[2.5rem] shadow-xl transition-all duration-500 !important;
   }
-
   .dark .glass-card {
     @apply bg-white/5 border-white/10 shadow-2xl !important;
   }
 
-  /* Navigation */
-  .nav-menu ul li a { @apply text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 hover:text-ovp-accent transition-all; }
-  .dark .nav-menu ul li a { @apply text-slate-400; }
-  
-  /* Mega Dropdown - FIXED COLOR */
+  /* Mega Menu Contrast */
   .nav-menu ul li ul.sub-menu {
-    @apply absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-white border border-slate-100 rounded-[3rem] p-10 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-8 shadow-2xl;
+    @apply absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-white border border-slate-200 rounded-[3rem] p-10 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-8 shadow-2xl;
   }
-  
   .dark .nav-menu ul li ul.sub-menu {
     @apply bg-[#02060f] border-white/10;
   }
-  
-  .nav-menu ul li:hover ul.sub-menu { @apply opacity-100 visible translate-y-0; }
-  
-  .nav-menu ul li ul.sub-menu li a {
-    @apply flex flex-row items-center gap-5 p-5 rounded-3xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    color: inherit !important;
-  }
-  
-  .dark .nav-menu ul li ul.sub-menu li a {
-    @apply hover:bg-ovp-accent/10 hover:border-ovp-accent/20 !important;
-  }
 
-  /* News Card Bento Style */
+  /* Cards */
   .news-card {
     @apply bg-white border border-slate-100 rounded-[3rem] overflow-hidden hover:shadow-2xl transition-all duration-500;
   }
-
   .dark .news-card {
-    @apply bg-white/5 border-white/10 hover:border-ovp-accent/30;
+    @apply bg-white/5 border-white/10;
   }
-
-  .news-card h3 { @apply text-slate-900; }
-  .dark .news-card h3 { @apply text-white; }
 }
 
 @keyframes gradient-x {
