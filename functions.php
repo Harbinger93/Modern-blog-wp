@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define Constants
  */
-define( 'MODERN_BLOG_VERSION', '1.0.0' );
+define( 'MODERN_BLOG_VERSION', '1.1.0' );
 define( 'MODERN_BLOG_DIR', get_template_directory() );
 define( 'MODERN_BLOG_URI', get_template_directory_uri() );
 

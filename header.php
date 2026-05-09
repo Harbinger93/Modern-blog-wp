@@ -32,7 +32,7 @@
                     <div class="nav-menu">
                         <?php
                         wp_nav_menu( array(
-                            'theme_location' => 'primary-menu',
+                            'theme_location' => 'primary',
                             'menu_id'        => 'primary-menu',
                             'container'      => false,
                             'fallback_cb'    => false,
@@ -68,7 +68,7 @@
                 <div class="mt-20">
                     <?php
                     wp_nav_menu( array(
-                        'theme_location' => 'primary-menu',
+                        'theme_location' => 'primary',
                         'container'      => false,
                         'menu_class'     => 'flex flex-col gap-8 text-2xl font-black uppercase tracking-tighter text-white',
                     ) );
