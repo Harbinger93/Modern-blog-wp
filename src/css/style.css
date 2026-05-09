@@ -2,22 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+@layer base {
+  body {
+    @apply bg-ovp-light dark:bg-ovp-dark text-slate-900 dark:text-slate-100 transition-colors duration-500;
   }
-  
-  .dark .glass-card {
-    @apply bg-black/20 border-white/5;
+}
+
+@layer components {
+  /* Global Animated Background */
+  .animated-mesh {
+    background: linear-gradient(-45deg, #050b18, #0a1628, #0f172a, #050b18);
+    background-size: 400% 400%;
+    animation: gradient-x 15s ease infinite;
   }
 
-  /* Navigation Dropdowns */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl;
+  }
+
+  /* Navigation Dropdowns Fix */
+  .nav-menu ul {
+    @apply flex items-center gap-6;
+  }
+
   .nav-menu ul li {
-    @apply relative py-4;
+    @apply relative py-6;
+  }
+
+  .nav-menu ul li a {
+    @apply text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-all;
   }
 
   .nav-menu ul li ul.sub-menu {
-    @apply absolute top-full left-0 w-64 bg-ovp-dark/90 backdrop-blur-xl border border-white/10 rounded-xl p-4 opacity-0 invisible translate-y-2 transition-all duration-300 z-50;
+    @apply absolute top-full left-0 w-64 bg-ovp-darker/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 opacity-0 invisible translate-y-4 transition-all duration-300 z-[100] shadow-2xl;
   }
 
   .nav-menu ul li:hover ul.sub-menu {
@@ -25,28 +42,34 @@
   }
 
   .nav-menu ul li ul.sub-menu li {
-    @apply py-2 border-b border-white/5 last:border-0;
+    @apply py-0 border-none;
   }
 
   .nav-menu ul li ul.sub-menu li a {
-    @apply text-xs text-slate-300 hover:text-ovp-accent transition-colors block;
+    @apply block py-3 px-4 rounded-xl hover:bg-white/5 text-[9px];
   }
 
-  /* Slider Netflix Style */
-  .netflix-slider {
-    @apply relative overflow-hidden;
+  /* Netflix Hero Components */
+  .hero-slide-active {
+    @apply opacity-100 scale-100 visible;
   }
+  
+  .hero-slide-inactive {
+    @apply opacity-0 scale-105 invisible;
+  }
+}
 
-  .slider-item {
-    @apply shrink-0 w-full snap-center;
-  }
-
-  /* Animated Mesh Gradient Background */
-  .mesh-bg {
-    background-color: #0f172a;
-    background-image: 
-      radial-gradient(at 0% 0%, hsla(217,100%,15%,1) 0, transparent 50%), 
-      radial-gradient(at 50% 0%, hsla(215,80%,10%,1) 0, transparent 50%), 
-      radial-gradient(at 100% 0%, hsla(217,100%,15%,1) 0, transparent 50%);
-  }
+/* Custom Scrollbar for Deep Blue */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050b18;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
 }
