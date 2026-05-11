@@ -5,86 +5,123 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
-    <script>
-        if (localStorage.theme === 'light') document.documentElement.classList.remove('dark');
-        else document.documentElement.classList.add('dark');
-    </script>
+	<script>
+		/* Critical: apply theme BEFORE paint to prevent flash */
+		(function(){
+			var t = localStorage.getItem('ovp-theme');
+			if (t === 'light') {
+				document.documentElement.classList.remove('dark');
+			} else {
+				document.documentElement.classList.add('dark');
+			}
+		})();
+	</script>
 </head>
 
-<body <?php body_class('antialiased animated-mesh min-h-screen text-slate-100'); ?>>
+<body <?php body_class('antialiased min-h-screen bg-white dark:bg-[#050b18] text-slate-900 dark:text-slate-100 transition-colors duration-300'); ?>>
 <?php wp_body_open(); ?>
 
-<div id="page" class="site flex flex-col">
-	<header id="masthead" class="site-header fixed top-6 inset-x-0 z-[100] transition-all duration-500">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="glass-card bg-ovp-darker/60 border-white/10 px-6 py-2 flex justify-between items-center">
-                <!-- Branding -->
-                <div class="site-branding shrink-0">
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="flex items-center gap-3 group">
-                        <div class="w-8 h-8 bg-ovp-accent rounded-xl flex items-center justify-center font-black text-white text-lg shadow-lg shadow-ovp-accent/20 group-hover:rotate-12 transition-transform">O</div>
-                        <span class="text-lg font-black text-white tracking-tighter uppercase">OVP<span class="text-ovp-accent">.</span></span>
-                    </a>
-                </div>
+<div id="page" class="site flex flex-col min-h-screen">
 
-                <!-- Desktop Navigation (Mega Menu Support) -->
-                <nav id="site-navigation" class="main-navigation hidden lg:block">
-                    <div class="nav-menu">
-                        <?php
-                        wp_nav_menu( array(
-                            'theme_location' => 'primary',
-                            'menu_id'        => 'primary-menu',
-                            'container'      => false,
-                            'fallback_cb'    => false,
-                        ) );
-                        ?>
-                    </div>
-                </nav>
-                
-                <!-- Tools -->
-                <div class="flex items-center gap-3">
-                    <button id="dark-mode-toggle" class="p-2.5 rounded-xl bg-white/5 text-slate-400 hover:text-white border border-white/5 transition-all">
-                        <svg class="w-4 h-4 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                        <svg class="w-4 h-4 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
-                    </button>
-                    <button id="mobile-menu-trigger" class="lg:hidden p-2 text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+	<header id="masthead" class="site-header fixed top-0 inset-x-0 z-[100]">
+		<div class="container mx-auto px-4 md:px-6 py-3">
+			<div class="bg-white/80 dark:bg-[#0a1628]/80 backdrop-blur-xl border border-slate-200/60 dark:border-white/10 rounded-2xl px-6 py-2.5 flex justify-between items-center shadow-lg shadow-black/5 dark:shadow-black/30">
 
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu-overlay" class="fixed inset-0 bg-ovp-darker/98 backdrop-blur-2xl z-[120] opacity-0 invisible transition-all duration-500 lg:hidden">
-            <div class="p-8">
-                <button id="mobile-menu-close" class="absolute top-8 right-8 text-white">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-                <div class="mt-20">
-                    <?php
-                    wp_nav_menu( array(
-                        'theme_location' => 'primary',
-                        'container'      => false,
-                        'menu_class'     => 'flex flex-col gap-8 text-4xl font-black uppercase tracking-tighter text-white',
-                    ) );
-                    ?>
-                </div>
-            </div>
-        </div>
+				<!-- Branding -->
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="flex items-center gap-2.5 shrink-0 group">
+					<div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white text-base shadow-md shadow-blue-600/30 group-hover:scale-110 transition-transform">O</div>
+					<span class="text-lg font-black text-slate-900 dark:text-white tracking-tight">OVP</span>
+				</a>
+
+				<!-- Desktop Navigation -->
+				<nav id="site-navigation" class="main-navigation hidden lg:block">
+					<div class="nav-menu">
+						<?php
+						wp_nav_menu( array(
+							'theme_location' => 'primary',
+							'menu_id'        => 'primary-menu',
+							'container'      => false,
+							'fallback_cb'    => false,
+						) );
+						?>
+					</div>
+				</nav>
+
+				<!-- Tools -->
+				<div class="flex items-center gap-2">
+					<button id="dark-mode-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Cambiar tema">
+						<!-- Sun icon (shown in dark mode) -->
+						<svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+						<!-- Moon icon (shown in light mode) -->
+						<svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+					</button>
+					<button id="mobile-menu-trigger" class="lg:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-white transition-colors">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Mobile Overlay -->
+		<div id="mobile-menu-overlay" class="fixed inset-0 bg-white/95 dark:bg-[#050b18]/95 backdrop-blur-2xl z-[120] opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col">
+			<div class="flex justify-end p-6">
+				<button id="mobile-menu-close" class="p-3 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+				</button>
+			</div>
+			<div class="flex-1 flex items-center justify-center p-8">
+				<?php
+				wp_nav_menu( array(
+					'theme_location' => 'primary',
+					'container'      => false,
+					'menu_class'     => 'flex flex-col gap-6 text-center text-3xl font-black uppercase tracking-tight text-slate-900 dark:text-white',
+				) );
+				?>
+			</div>
+		</div>
 	</header>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const darkToggle = document.getElementById('dark-mode-toggle');
-        darkToggle?.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	/* Dark Mode Toggle */
+	var toggle = document.getElementById('dark-mode-toggle');
+	if (toggle) {
+		toggle.addEventListener('click', function() {
+			document.documentElement.classList.toggle('dark');
+			var isDark = document.documentElement.classList.contains('dark');
+			localStorage.setItem('ovp-theme', isDark ? 'dark' : 'light');
+		});
+	}
 
-        const trigger = document.getElementById('mobile-menu-trigger');
-        const close = document.getElementById('mobile-menu-close');
-        const overlay = document.getElementById('mobile-menu-overlay');
+	/* Mobile Menu */
+	var trigger = document.getElementById('mobile-menu-trigger');
+	var close = document.getElementById('mobile-menu-close');
+	var overlay = document.getElementById('mobile-menu-overlay');
+	if (trigger && overlay) {
+		trigger.addEventListener('click', function() {
+			overlay.classList.remove('opacity-0', 'invisible');
+		});
+	}
+	if (close && overlay) {
+		close.addEventListener('click', function() {
+			overlay.classList.add('opacity-0', 'invisible');
+		});
+	}
 
-        trigger?.addEventListener('click', () => overlay.classList.remove('opacity-0', 'invisible'));
-        close?.addEventListener('click', () => overlay.classList.add('opacity-0', 'invisible'));
-    });
-    </script>
+	/* Nav Menu: style links based on theme */
+	var navLinks = document.querySelectorAll('.nav-menu > ul > li > a');
+	navLinks.forEach(function(link) {
+		link.classList.add('text-slate-700', 'dark:text-slate-300', 'hover:text-blue-600', 'dark:hover:text-blue-400');
+	});
+
+	/* Sub-menu styling */
+	var subMenus = document.querySelectorAll('.nav-menu > ul > li > ul.sub-menu');
+	subMenus.forEach(function(submenu) {
+		submenu.classList.add('bg-white', 'dark:bg-[#0a1628]', 'border', 'border-slate-200', 'dark:border-white/10', 'shadow-2xl');
+	});
+	var subLinks = document.querySelectorAll('.nav-menu > ul > li > ul.sub-menu > li > a');
+	subLinks.forEach(function(link) {
+		link.classList.add('text-slate-600', 'dark:text-slate-300', 'hover:bg-blue-50', 'dark:hover:bg-white/5', 'hover:text-blue-600', 'dark:hover:text-blue-400');
+	});
+});
+</script>

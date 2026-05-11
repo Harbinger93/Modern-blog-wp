@@ -2,72 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
 @layer base {
-  body {
-    @apply bg-white text-slate-900 transition-colors duration-500 overflow-x-hidden;
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
   }
-  
-  .dark body {
-    @apply bg-[#050b18] text-slate-100 !important;
+  body {
+    @apply overflow-x-hidden;
   }
 }
 
 @layer components {
-  /* Dynamic Header Text */
-  .nav-menu ul li a { 
-    @apply text-[11px] font-black uppercase tracking-[0.2em] text-slate-900 transition-all !important; 
+  /* ── Menu Structure ─────────────────────────── */
+  .nav-menu > ul {
+    @apply flex items-center gap-1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
-  .dark .nav-menu ul li a { 
-    @apply text-white hover:text-ovp-accent !important; 
+  .nav-menu > ul > li {
+    @apply relative;
   }
-
-  /* Header Glass Morphism - Fixed */
-  header .glass-card {
-    @apply bg-white/70 border-slate-200 shadow-lg !important;
-  }
-  .dark header .glass-card {
-    @apply bg-ovp-darker/60 border-white/10 shadow-2xl !important;
+  .nav-menu > ul > li > a {
+    @apply block px-4 py-3 text-xs font-bold uppercase tracking-wider transition-colors;
   }
 
-  /* Hero Content Fix */
-  .slide-content h2, .slide-content p {
-    @apply opacity-100 translate-y-0 !important;
+  /* ── Mega Dropdown ──────────────────────────── */
+  .nav-menu > ul > li > ul.sub-menu {
+    @apply absolute top-full left-1/2 -translate-x-1/2
+           w-[560px] rounded-2xl p-6
+           opacity-0 invisible -translate-y-2
+           transition-all duration-300 ease-out
+           z-[200] grid grid-cols-2 gap-2;
+    list-style: none;
+    margin: 0;
+    padding-top: 1.5rem;
   }
-
-  /* Section Backgrounds */
-  .section-light { @apply bg-white; }
-  .dark .section-light { @apply bg-[#050b18]; }
-
-  .section-alt { @apply bg-slate-50; }
-  .dark .section-alt { @apply bg-ovp-darker/50; }
-
-  /* Glass Cards Deluxe */
-  .glass-card {
-    @apply bg-white border border-slate-200 rounded-[2.5rem] shadow-xl transition-all duration-500 !important;
+  .nav-menu > ul > li:hover > ul.sub-menu {
+    @apply opacity-100 visible translate-y-0;
   }
-  .dark .glass-card {
-    @apply bg-white/5 border-white/10 shadow-2xl !important;
-  }
-
-  /* Mega Menu Contrast */
-  .nav-menu ul li ul.sub-menu {
-    @apply absolute top-full left-1/2 -translate-x-1/2 w-[700px] bg-white border border-slate-200 rounded-[3rem] p-10 opacity-0 invisible translate-y-6 transition-all duration-500 z-[100] grid grid-cols-2 gap-8 shadow-2xl;
-  }
-  .dark .nav-menu ul li ul.sub-menu {
-    @apply bg-[#02060f] border-white/10;
-  }
-
-  /* Cards */
-  .news-card {
-    @apply bg-white border border-slate-100 rounded-[3rem] overflow-hidden hover:shadow-2xl transition-all duration-500;
-  }
-  .dark .news-card {
-    @apply bg-white/5 border-white/10;
+  .nav-menu > ul > li > ul.sub-menu > li > a {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors;
+    text-transform: none;
+    letter-spacing: normal;
   }
 }
 
+/* ── Keyframes ─────────────────────────────────── */
 @keyframes gradient-x {
-  0% { background-position: 0% 50%; }
+  0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
