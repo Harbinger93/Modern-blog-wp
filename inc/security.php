@@ -37,12 +37,18 @@ function ovp_add_security_headers() {
 add_action( 'send_headers', 'ovp_add_security_headers' );
 
 /**
- * 4. Disable REST API for non-authenticated users (Optional but safer)
+ * 4. Disable REST API for non-authenticated users (Allowing search)
  */
 add_filter( 'rest_authentication_errors', function( $result ) {
     if ( ! empty( $result ) ) {
         return $result;
     }
+    
+    // Permitir búsquedas públicas para que el buscador en tiempo real funcione
+    if ( isset( $_GET['search'] ) ) {
+        return $result;
+    }
+
     if ( ! is_user_logged_in() ) {
         return new WP_Error( 'rest_not_logged_in', 'Acceso restringido.', array( 'status' => 401 ) );
     }

@@ -1,100 +1,117 @@
 <?php
 /**
  * The sidebar containing the main widget area
- *
- * @package modern-blog-wp
  */
-
-if ( ! is_active_sidebar( 'sidebar-1' ) && ! is_single() ) {
-	return;
-}
 ?>
 
-<aside id="secondary" class="widget-area w-full lg:w-80 shrink-0 space-y-12">
-	
-    <!-- Widget: Most Viewed (Bien diferenciadas) -->
-    <section class="widget widget_most_viewed">
-        <h3 class="text-xs font-black uppercase tracking-[0.3em] text-ovp-accent mb-8 pb-4 border-b border-slate-100 dark:border-white/5 flex items-center gap-3">
-            <span class="w-2 h-2 bg-ovp-accent rounded-full animate-pulse"></span>
-            Tendencias
+<style>
+    /* Vertical Marquee Animation */
+    @keyframes scrollVertical {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+    }
+    .marquee-vertical-container {
+        height: 400px;
+        overflow: hidden;
+        position: relative;
+    }
+    .marquee-vertical-content {
+        animation: scrollVertical 20s linear infinite;
+    }
+    .marquee-vertical-container:hover .marquee-vertical-content {
+        animation-play-state: paused;
+    }
+
+    /* Horizontal Marquee Animations */
+    @keyframes scrollLeft {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    @keyframes scrollRight {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+    }
+    .marquee-row-left {
+        animation: scrollLeft 30s linear infinite;
+        width: max-content;
+    }
+    .marquee-row-right {
+        animation: scrollRight 30s linear infinite;
+        width: max-content;
+    }
+    .marquee-row-left:hover, .marquee-row-right:hover {
+        animation-play-state: paused;
+    }
+</style>
+
+<aside id="secondary" class="widget-area w-full lg:w-96 shrink-0 space-y-10">
+    
+    <!-- Widget: Vertical Recent News -->
+    <section class="widget bg-slate-50 dark:bg-white/5 rounded-[2rem] p-8 border border-slate-100 dark:border-white/10 overflow-hidden">
+        <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 mb-6 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+            Últimas Noticias
         </h3>
-        <div class="space-y-6">
-            <?php
-            $most_viewed = new WP_Query(array(
-                'post_type' => 'post',
-                'meta_key' => 'modern_blog_post_views_count',
-                'orderby' => 'meta_value_num',
-                'order' => 'DESC',
-                'posts_per_page' => 4
-            ));
-
-            if ( $most_viewed->have_posts() ) :
-                $counter = 1;
-                while ( $most_viewed->have_posts() ) : $most_viewed->the_post(); ?>
-                    <article class="flex gap-4 group">
-                        <div class="text-3xl font-black text-slate-100 dark:text-white/5 transition-colors group-hover:text-ovp-accent/20 shrink-0 tabular-nums">
-                            0<?php echo $counter; ?>
+        <div class="marquee-vertical-container">
+            <div class="marquee-vertical-content space-y-4">
+                <?php
+                $recent_posts = new WP_Query(array('posts_per_page' => 5, 'post_status' => 'publish'));
+                // Duplicate for seamless loop
+                $posts_data = $recent_posts->posts;
+                $loop_posts = array_merge($posts_data, $posts_data);
+                
+                foreach($loop_posts as $post) : setup_postdata($post); ?>
+                    <a href="<?php the_permalink($post->ID); ?>" class="group flex gap-4 p-3 rounded-2xl hover:bg-white dark:hover:bg-white/5 transition-all">
+                        <div class="w-16 h-16 shrink-0 rounded-xl overflow-hidden bg-slate-200 dark:bg-slate-800">
+                            <?php echo get_the_post_thumbnail($post->ID, 'thumbnail', array('class' => 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-500')); ?>
                         </div>
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-900 dark:text-white leading-snug group-hover:text-ovp-accent transition-colors">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h4>
-                            <div class="text-[10px] font-bold text-slate-400 uppercase mt-2">
-                                <?php echo modern_blog_get_post_views(get_the_ID()); ?> vistas
-                            </div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-slate-900 dark:text-white leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors"><?php echo get_the_title($post->ID); ?></h4>
+                            <span class="text-[10px] text-slate-400 mt-1 block uppercase font-medium"><?php echo get_the_date('', $post->ID); ?></span>
                         </div>
-                    </article>
-                <?php $counter++; endwhile;
-                wp_reset_postdata();
-            endif; ?>
-        </div>
-    </section>
-
-    <!-- Widget: Recent News -->
-    <section class="widget widget_recent_entries glass-card p-8 border-slate-100 dark:border-white/5">
-        <h3 class="text-xs font-black uppercase tracking-[0.3em] text-slate-900 dark:text-white mb-8">Lo más reciente</h3>
-        <div class="space-y-8">
-            <?php
-            $recent = new WP_Query(array(
-                'post_type' => 'post',
-                'posts_per_page' => 3,
-                'post__not_in' => array(get_the_ID())
-            ));
-
-            if ( $recent->have_posts() ) :
-                while ( $recent->have_posts() ) : $recent->the_post(); ?>
-                    <article class="space-y-3">
-                        <?php if ( has_post_thumbnail() ) : ?>
-                            <div class="rounded-xl overflow-hidden aspect-video mb-3">
-                                <?php the_post_thumbnail('medium', array('class' => 'w-full h-full object-cover')); ?>
-                            </div>
-                        <?php endif; ?>
-                        <h4 class="text-sm font-bold text-slate-800 dark:text-white/80 leading-tight hover:text-ovp-accent transition-colors">
-                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </h4>
-                        <div class="text-[10px] text-slate-400 font-bold uppercase"><?php echo get_the_date(); ?></div>
-                    </article>
-                <?php endwhile;
-                wp_reset_postdata();
-            endif; ?>
-        </div>
-    </section>
-
-    <!-- Widget: Value Addition (Trust Badge / Newsletter) -->
-    <section class="widget widget_cta glass-card p-8 bg-ovp-accent text-white border-none shadow-xl shadow-ovp-accent/30 overflow-hidden relative">
-        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-        <div class="relative z-10">
-            <h3 class="text-xl font-black tracking-tighter mb-4 leading-tight">Boletín de Transparencia</h3>
-            <p class="text-sm text-white/70 mb-6 font-light">Recibe informes técnicos y alertas críticas directamente en tu correo.</p>
-            <form class="space-y-3">
-                <input type="email" placeholder="tu@email.com" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:bg-white/20">
-                <button class="w-full py-3 bg-white text-ovp-accent font-bold rounded-xl hover:bg-slate-100 transition-colors">Suscribirse</button>
-            </form>
-            <div class="mt-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-white/40">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm-1 11.41l-2.71-2.71a.996.996 0 10-1.41 1.41l3.42 3.42c.39.39 1.02.39 1.41 0l7.42-7.42a.996.996 0 10-1.41-1.41L11 13.41z"/></svg>
-                Conexión segura y cifrada
+                    </a>
+                <?php endforeach; wp_reset_postdata(); ?>
             </div>
         </div>
     </section>
 
-</aside><!-- #secondary -->
+    <!-- Widget: Double Row Horizontal Marquee (Tendencias) -->
+    <section class="widget">
+        <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6 px-4">Tendencias</h3>
+        <div class="space-y-3 overflow-hidden">
+            <!-- Row 1: Left -->
+            <div class="marquee-row-left flex gap-3">
+                <?php
+                $trending = new WP_Query(array('posts_per_page' => 6, 'orderby' => 'comment_count'));
+                $trending_posts = array_merge($trending->posts, $trending->posts);
+                foreach($trending_posts as $post) : ?>
+                    <a href="<?php echo get_permalink($post->ID); ?>" class="px-5 py-3 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold whitespace-nowrap hover:border-blue-500 transition-colors">
+                        # <?php echo wp_trim_words(get_the_title($post->ID), 4, ''); ?>
+                    </a>
+                <?php endforeach; wp_reset_postdata(); ?>
+            </div>
+            <!-- Row 2: Right -->
+            <div class="marquee-row-right flex gap-3">
+                <?php
+                foreach($trending_posts as $post) : ?>
+                    <a href="<?php echo get_permalink($post->ID); ?>" class="px-5 py-3 rounded-full bg-blue-600 text-white text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition-colors">
+                        <?php echo wp_trim_words(get_the_title($post->ID), 3, ''); ?> →
+                    </a>
+                <?php endforeach; wp_reset_postdata(); ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- Widget: High Impact Report CTA -->
+    <section class="widget relative rounded-[2.5rem] overflow-hidden bg-slate-900 group">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" alt="Informe">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 via-blue-900/40 to-transparent"></div>
+        <div class="relative z-10 p-10 flex flex-col items-center text-center">
+            <span class="px-3 py-1 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full mb-6">Nuevo Informe</span>
+            <h3 class="text-2xl font-black text-white leading-tight mb-4 tracking-tighter">Situación Carcelaria en Venezuela 2026</h3>
+            <p class="text-white/70 text-sm mb-8 font-medium">Un análisis profundo sobre los DDHH y las condiciones del sistema penitenciario.</p>
+            <a href="<?php echo home_url('/publicaciones'); ?>" class="w-full py-4 bg-white text-blue-600 font-bold rounded-2xl hover:scale-105 transition-transform shadow-2xl">Descargar Ahora</a>
+        </div>
+    </section>
+
+</aside>
