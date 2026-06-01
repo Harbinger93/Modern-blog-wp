@@ -30,9 +30,9 @@ get_header(); ?>
                              class="h-14 md:h-20 w-auto mb-8 drop-shadow-xl" alt="OVP Logo">
                         
                         <div class="space-y-2 mb-8">
-                            <h2 class="text-6xl md:text-9xl font-black text-white tracking-tighter leading-none">
-                                24 <span class="text-blue-500">AÑOS</span>
-                            </h2>
+                            <h2 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none">
+    24 <span class="text-blue-500">AÑOS</span>
+</h2>
                             <div class="h-1.5 w-24 bg-blue-600 rounded-full"></div>
                         </div>
                         
@@ -42,16 +42,7 @@ get_header(); ?>
                     </div>
                 </div>
 
-                <!-- Subtle Bottom Bar with Socials -->
-                <div class="absolute bottom-10 left-10 md:left-20 hidden md:flex items-center gap-6 opacity-60">
-                    <div class="flex gap-4">
-                        <span class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-[10px] font-bold">𝕏</span>
-                        <span class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-[10px] font-bold">IG</span>
-                        <span class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-[10px] font-bold">FB</span>
-                    </div>
-                    <span class="text-sm font-medium text-white/80">@oveprisiones</span>
-                    <span class="text-sm font-medium text-white/80">www.oveprisiones.com</span>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -72,17 +63,44 @@ get_header(); ?>
                 if ($news->have_posts()) :
                     while ($news->have_posts()) : $news->the_post();
                 ?>
-                    <article class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20 transition-all duration-300">
-                        <div class="aspect-[16/10] overflow-hidden">
-                            <?php the_post_thumbnail('large', array('class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500')); ?>
-                        </div>
-                        <div class="p-6">
-                            <time class="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider"><?php echo get_the_date(); ?></time>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-2 leading-snug group-hover:text-blue-600 transition-colors">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mt-3 line-clamp-2"><?php echo wp_trim_words(get_the_excerpt(), 18); ?></p>
-                        </div>
+                    <article class="group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 aspect-[4/5] sm:aspect-square md:aspect-[4/5] lg:aspect-[3/4]">
+                        <a href="<?php the_permalink(); ?>" class="absolute inset-0 block">
+                            <!-- Background Image -->
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('large', array('class' => 'absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700')); ?>
+                            <?php else : ?>
+                                <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-blue-600/30 text-5xl font-black">OVP</div>
+                            <?php endif; ?>
+                            
+                            <!-- Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:via-black/50 transition-colors duration-500"></div>
+                            
+                            <!-- Content -->
+                            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                                <div class="transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="text-[10px] font-bold text-white uppercase tracking-wider px-2.5 py-1 bg-blue-600/90 backdrop-blur-md rounded-md">
+                                            <?php 
+                                            $cats = get_the_category();
+                                            echo !empty($cats) ? esc_html($cats[0]->name) : 'Noticia';
+                                            ?>
+                                        </span>
+                                        <time class="text-[11px] font-medium text-white/80 uppercase tracking-wider drop-shadow-md"><?php echo get_the_date(); ?></time>
+                                    </div>
+                                    <h3 class="text-xl md:text-2xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors drop-shadow-lg">
+                                        <?php the_title(); ?>
+                                    </h3>
+                                    <p class="text-slate-200 text-sm mt-3 line-clamp-2 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block drop-shadow-md">
+                                        <?php echo wp_trim_words(get_the_excerpt(), 18); ?>
+                                    </p>
+                                    <div class="mt-4 md:opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 hidden sm:block">
+                                        <span class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 uppercase tracking-widest hover:text-blue-300 transition-colors">
+                                            Leer más <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </article>
                 <?php endwhile; wp_reset_postdata(); endif; ?>
             </div>
@@ -165,28 +183,9 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- 6. AREAS DE INTERES (Líneas de Acción) -->
-    <?php get_template_part('template-parts/areas-action'); ?>
 
-    <!-- 7. BOLETIN -->
-    <section class="py-20 bg-white dark:bg-[#050b18]">
-        <div class="container mx-auto px-6">
-            <div class="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-[#0a1628] dark:to-[#071020] rounded-3xl p-10 md:p-16 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
-                <div class="relative z-10 lg:w-1/2 space-y-6">
-                    <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight">Boletín <span class="text-blue-400">Informativo</span></h2>
-                    <p class="text-slate-400 leading-relaxed">Recibe alertas, informes y noticias sobre la situación penitenciaria en Venezuela.</p>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="email" placeholder="Tu correo electrónico" class="flex-1 bg-white/10 border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm placeholder-slate-500 outline-none focus:border-blue-500 transition-colors">
-                        <button class="px-8 py-3.5 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/25">Suscribirme</button>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 relative z-10">
-                    <img src="https://oveprisiones.com/wp-content/uploads/2016/12/generica-01.jpg" class="rounded-2xl shadow-2xl border border-white/10 w-full object-cover" alt="Boletín OVP">
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- 7. INFORME ANUAL -->
+    <?php get_template_part('template-parts/section-informe-anual'); ?>
 
     <!-- 8. PUBLICACIONES ESPECIALIZADAS -->
     <?php get_template_part('template-parts/featured-publications'); ?>

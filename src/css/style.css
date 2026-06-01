@@ -1,9 +1,9 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 @layer base {
   html {
@@ -54,4 +54,74 @@
 @keyframes gradient-x {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+/* ── Responsive Video and Embed Corrections ── */
+.wp-block-video video,
+.entry-content video:not(.mejs-tech):not(.wp-video-shortcode),
+.prose video:not(.mejs-tech):not(.wp-video-shortcode),
+.wp-block-embed iframe,
+.entry-content iframe:not([title*="PDF"]):not([src*=".pdf"]),
+.prose iframe:not([title*="PDF"]):not([src*=".pdf"]) {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 500px !important;
+  border-radius: 1.5rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+  object-fit: contain !important;
+  background: #000 !important;
+}
+
+/* If the video block has an alignment wrapper */
+.wp-video,
+.wp-block-video,
+.wp-block-embed,
+.wp-block-embed__wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* ── MediaElement.js (mejs) player responsive overrides ── */
+.mejs-container {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 500px !important;
+  background: #000 !important;
+  border-radius: 1.5rem !important;
+  overflow: hidden !important;
+  margin: 2.5rem auto !important;
+  display: block !important;
+  position: relative !important;
+}
+
+/* mejs inner elements and controls */
+.mejs-container .mejs-inner,
+.mejs-container .mejs-mediaelement,
+.mejs-container .mejs-layers,
+.mejs-container .mejs-overlay {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+.mejs-container .mejs-mediaelement video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  background: #000 !important;
+}
+
+.mejs-container .mejs-controls {
+  width: 100% !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  background: rgba(0,0,0,0.7) !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  z-index: 100 !important;
 }

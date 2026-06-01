@@ -82,7 +82,7 @@ get_header(); ?>
                     <!-- Years Badge -->
                     <div
                         class="absolute -top-6 -left-6 bg-blue-600 text-white rounded-2xl p-5 shadow-xl shadow-blue-600/20 hidden md:block z-10">
-                        <span class="text-3xl font-black block">+22</span>
+                        <span class="text-3xl font-black block">+24</span>
                         <span class="text-[10px] font-bold uppercase tracking-widest text-blue-100">Años de
                             servicio</span>
                     </div>
@@ -179,7 +179,8 @@ get_header(); ?>
                                     <path
                                         d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                     <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg></div>
+                                </svg>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-base">Visión</h4>
                                 <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">Ser la
@@ -197,7 +198,8 @@ get_header(); ?>
                                     viewBox="0 0 24 24">
                                     <path
                                         d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                </svg></div>
+                                </svg>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-base">Valores</h4>
                                 <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">Autenticidad,
@@ -215,7 +217,8 @@ get_header(); ?>
                                     viewBox="0 0 24 24">
                                     <path
                                         d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                                </svg></div>
+                                </svg>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-base">Fortalezas</h4>
                                 <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">Recurso humano
@@ -353,7 +356,8 @@ get_header(); ?>
                     <div class="relative mb-10">
                         <div
                             class="w-24 h-24 bg-red-50 dark:bg-red-600/10 rounded-3xl flex items-center justify-center p-4">
-                            <span class="text-2xl font-black text-slate-900 dark:text-white">OMCT</span></div>
+                            <span class="text-2xl font-black text-slate-900 dark:text-white">OMCT</span>
+                        </div>
                         <div
                             class="absolute -bottom-2 -right-2 px-2 py-1 bg-red-600 text-white text-[8px] font-bold rounded uppercase tracking-tighter">
                             SOS-TORTURA</div>
@@ -392,7 +396,8 @@ get_header(); ?>
                                 <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path
                                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Dirección</h4>
                         <p class="text-slate-500 dark:text-slate-400 text-sm">Av. Sur, entre esq. Cipreses a Hoyo,
                             Centro Empresarial Cipreses, PH, Caracas 1014</p>
@@ -404,7 +409,8 @@ get_header(); ?>
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Teléfono</h4>
                         <p class="text-slate-500 dark:text-slate-400 text-sm">+58 212 4833725<br>+58 212 4824343</p>
                     </div>
@@ -415,7 +421,8 @@ get_header(); ?>
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Email</h4>
                         <p class="text-slate-500 dark:text-slate-400 text-sm"><a href="mailto:info@oveprisiones.com"
                                 class="hover:text-blue-600 transition-colors">info@oveprisiones.com</a></p>

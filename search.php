@@ -28,31 +28,42 @@ get_header(); ?>
             <?php if (have_posts()) : ?>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <?php while (have_posts()) : the_post(); ?>
-                        <article class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:shadow-xl transition-all duration-300">
-                            <a href="<?php the_permalink(); ?>" class="block">
-                                <div class="aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
-                                    <?php if (has_post_thumbnail()) : ?>
-                                        <?php the_post_thumbnail('medium_large', array('class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500')); ?>
-                                    <?php else : ?>
-                                        <div class="w-full h-full flex items-center justify-center text-blue-600 font-black text-5xl opacity-20 italic">OVP</div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex items-center gap-2 mb-3">
-                                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider px-2 py-0.5 bg-blue-50 dark:bg-blue-600/10 rounded">
-                                            <?php 
-                                            $cats = get_the_category();
-                                            echo !empty($cats) ? esc_html($cats[0]->name) : 'Noticia';
-                                            ?>
-                                        </span>
-                                        <time class="text-[10px] text-slate-400"><?php echo get_the_date(); ?></time>
+                        <article class="group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 aspect-[4/5] sm:aspect-square md:aspect-[4/5] lg:aspect-[3/4]">
+                            <a href="<?php the_permalink(); ?>" class="absolute inset-0 block">
+                                <!-- Background Image -->
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('large', array('class' => 'absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700')); ?>
+                                <?php else : ?>
+                                    <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-blue-600/30 text-5xl font-black">OVP</div>
+                                <?php endif; ?>
+                                
+                                <!-- Gradient Overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:via-black/50 transition-colors duration-500"></div>
+                                
+                                <!-- Content -->
+                                <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                                    <div class="transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="text-[10px] font-bold text-white uppercase tracking-wider px-2.5 py-1 bg-blue-600/90 backdrop-blur-md rounded-md">
+                                                <?php 
+                                                $cats = get_the_category();
+                                                echo !empty($cats) ? esc_html($cats[0]->name) : 'Noticia';
+                                                ?>
+                                            </span>
+                                            <time class="text-[11px] font-medium text-white/80 uppercase tracking-wider drop-shadow-md"><?php echo get_the_date(); ?></time>
+                                        </div>
+                                        <h3 class="text-xl md:text-2xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors drop-shadow-lg">
+                                            <?php the_title(); ?>
+                                        </h3>
+                                        <p class="text-slate-200 text-sm mt-3 line-clamp-2 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block drop-shadow-md">
+                                            <?php echo wp_trim_words(get_the_excerpt(), 18); ?>
+                                        </p>
+                                        <div class="mt-4 md:opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 hidden sm:block">
+                                            <span class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 uppercase tracking-widest hover:text-blue-300 transition-colors">
+                                                Leer más <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 transition-colors">
-                                        <?php the_title(); ?>
-                                    </h3>
-                                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-3 line-clamp-2">
-                                        <?php echo wp_trim_words(get_the_excerpt(), 18); ?>
-                                    </p>
                                 </div>
                             </a>
                         </article>

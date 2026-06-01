@@ -73,6 +73,76 @@
 			box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2);
 		}
 
+		/* Responsive video, iframe and embed corrections */
+		.wp-block-video video,
+		.entry-content video:not(.mejs-tech):not(.wp-video-shortcode),
+		.prose video:not(.mejs-tech):not(.wp-video-shortcode),
+		.wp-block-embed iframe,
+		.entry-content iframe:not([title*="PDF"]):not([src*=".pdf"]),
+		.prose iframe:not([title*="PDF"]):not([src*=".pdf"]) {
+			width: 100% !important;
+			max-width: 100% !important;
+			height: 500px !important;
+			border-radius: 1.5rem !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+			display: block !important;
+			object-fit: contain !important;
+			background: #000 !important;
+		}
+
+		/* If the video block has an alignment wrapper */
+		.wp-video,
+		.wp-block-video,
+		.wp-block-embed,
+		.wp-block-embed__wrapper {
+			width: 100% !important;
+			max-width: 100% !important;
+			height: auto !important;
+		}
+
+		/* MediaElement.js (mejs) player responsive overrides */
+		.mejs-container {
+			width: 100% !important;
+			min-width: 100% !important;
+			max-width: 100% !important;
+			height: 500px !important;
+			background: #000 !important;
+			border-radius: 1.5rem !important;
+			overflow: hidden !important;
+			margin: 2.5rem auto !important;
+			display: block !important;
+			position: relative !important;
+		}
+
+		/* mejs inner elements and controls */
+		.mejs-container .mejs-inner,
+		.mejs-container .mejs-mediaelement,
+		.mejs-container .mejs-layers,
+		.mejs-container .mejs-overlay {
+			width: 100% !important;
+			height: 100% !important;
+			min-height: 100% !important;
+		}
+
+		.mejs-container .mejs-mediaelement video {
+			width: 100% !important;
+			height: 100% !important;
+			object-fit: contain !important;
+			background: #000 !important;
+		}
+
+		.mejs-container .mejs-controls {
+			width: 100% !important;
+			height: 40px !important;
+			min-height: 40px !important;
+			background: rgba(0,0,0,0.7) !important;
+			position: absolute !important;
+			bottom: 0 !important;
+			left: 0 !important;
+			z-index: 100 !important;
+		}
+
 		/* Mega Menu Styling */
 		.mega-menu-trigger:hover .mega-menu {
 			opacity: 1;
@@ -151,58 +221,12 @@
 				<!-- Desktop Navigation -->
 				<nav id="site-navigation" class="main-navigation hidden lg:block">
 					<ul class="flex items-center gap-6">
-						<li><a href="<?php echo home_url(); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors">Inicio</a></li>
-						<li><a href="<?php echo home_url('/nosotros'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors">Nosotros</a></li>
-						<li><a href="<?php echo home_url('/noticias'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors">Noticias</a></li>
-						<li class="relative mega-menu-trigger">
-							<a href="<?php echo home_url('/publicaciones'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors flex items-center gap-1">
-								Publicaciones <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-							</a>
-							<!-- Mega Menu -->
-							<div class="mega-menu">
-								<div>
-									<span class="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-4 block">Publicaciones</span>
-									<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-										<a href="<?php echo home_url('/biblioteca'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Biblioteca</h4>
-										</a>
-										<a href="<?php echo home_url('/boletin-digital'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Boletín digital</h4>
-										</a>
-										<a href="<?php echo home_url('/informes'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Informes</h4>
-										</a>
-										<a href="<?php echo home_url('/infografias'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Infografías</h4>
-										</a>
-										<a href="<?php echo home_url('/informes-cidh'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Informes CIDH</h4>
-										</a>
-										<a href="<?php echo home_url('/informes-tematicos'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Informes temáticos</h4>
-										</a>
-										<a href="<?php echo home_url('/lecturas-de-interes'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Lecturas de interés</h4>
-										</a>
-										<a href="<?php echo home_url('/otros'); ?>" class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
-											<h4 class="text-sm font-bold group-hover:text-blue-600">Otros</h4>
-										</a>
-									</div>
-								</div>
-								<div class="bg-blue-600 rounded-3xl p-6 text-white relative overflow-hidden flex flex-col justify-end min-h-[250px] group/featured">
-									<img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover/featured:scale-110 transition-transform duration-700" alt="Informes">
-									<div class="absolute inset-0 bg-gradient-to-t from-blue-900 via-blue-900/40 to-transparent"></div>
-									<div class="relative z-10">
-										<span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-wider">Destacado</span>
-										<h4 class="text-xl font-black mt-2 leading-tight">Informes Especiales 2026</h4>
-										<p class="text-white/80 text-xs mt-2 mb-6">Accede a nuestros informes técnicos de máxima importancia.</p>
-										<a href="<?php echo home_url('/informes'); ?>" class="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl text-sm hover:scale-105 transition-transform shadow-xl">Ver Informes</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li><a href="<?php echo home_url('/ong'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors">ONG</a></li>
-						<li><a href="<?php echo home_url('/multimedia'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors">Multimedia</a></li>
+						<li><a href="<?php echo home_url(); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors <?php echo is_front_page() ? 'text-blue-600' : 'text-slate-700 dark:text-slate-300'; ?>">Inicio</a></li>
+						<li><a href="<?php echo home_url('/nosotros'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors <?php echo is_page('nosotros') ? 'text-blue-600' : 'text-slate-700 dark:text-slate-300'; ?>">Nosotros</a></li>
+						<li><a href="<?php echo home_url('/noticias'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors <?php echo is_page('noticias') ? 'text-blue-600' : 'text-slate-700 dark:text-slate-300'; ?>">Noticias</a></li>
+						<li><a href="<?php echo home_url('/biblioteca'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors <?php echo is_page_template('page-biblioteca.php') ? 'text-blue-600' : 'text-slate-700 dark:text-slate-300'; ?>">Biblioteca</a></li>
+						<li><a href="<?php echo home_url('/ong'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors <?php echo is_page('ong') ? 'text-blue-600' : 'text-slate-700 dark:text-slate-300'; ?>">ONG</a></li>
+						<li><a href="<?php echo home_url('/multimedia'); ?>" class="text-sm font-bold hover:text-blue-600 transition-colors <?php echo is_page('multimedia') ? 'text-blue-600' : 'text-slate-700 dark:text-slate-300'; ?>">Multimedia</a></li>
 					</ul>
 				</nav>
 
@@ -210,16 +234,16 @@
 				<div class="flex items-center gap-2 lg:gap-4">
 					<!-- Social Icons (Desktop) -->
 					<div class="hidden xl:flex items-center gap-2 border-r border-slate-200 dark:border-white/10 pr-4 mr-2">
-						<a href="#" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="X (Twitter)">
+						<a href="https://x.com/oveprisiones" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="X (Twitter)">
 							<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
 						</a>
-						<a href="#" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Facebook">
+						<a href="https://www.facebook.com/ObservatorioVenezolanoDePrisionesOVP" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Facebook">
 							<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
 						</a>
-						<a href="#" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Instagram">
+						<a href="https://www.instagram.com/oveprisiones/" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Instagram">
 							<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
 						</a>
-						<a href="#" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="YouTube">
+						<a href="https://www.youtube.com/@observatoriovenezolanodepr4992" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="YouTube">
 							<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
 						</a>
 					</div>

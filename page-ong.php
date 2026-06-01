@@ -34,24 +34,86 @@ get_header(); ?>
             <div class="flex gap-12 items-center ong-marquee">
                 <?php
                 $ongs = array(
-                    array('name' => 'IIDH', 'full' => 'Instituto Interamericano de Derechos Humanos', 'url' => 'https://www.iidh.ed.cr/'),
-                    array('name' => 'APT', 'full' => 'Asociación para la Prevención de la Tortura', 'url' => 'https://www.apt.ch/'),
-                    array('name' => 'FLD', 'full' => 'Front Line Defenders', 'url' => 'https://www.frontlinedefenders.org/'),
-                    array('name' => 'CICR', 'full' => 'Comité Internacional de la Cruz Roja', 'url' => 'https://www.icrc.org/'),
-                    array('name' => 'CEJIL', 'full' => 'Centro por la Justicia y el Derecho Internacional', 'url' => 'https://cejil.org/'),
-                    array('name' => 'OMCT', 'full' => 'Organización Mundial Contra la Tortura', 'url' => 'https://www.omct.org/'),
-                    array('name' => 'HRW', 'full' => 'Human Rights Watch', 'url' => 'https://www.hrw.org/'),
-                    array('name' => 'AI', 'full' => 'Amnistía Internacional', 'url' => 'https://www.amnesty.org/'),
+                    array(
+                        'name' => 'OMCT',
+                        'full' => 'Organización Mundial Contra la Tortura',
+                        'url' => 'https://www.omct.org/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2024/01/v1.0_logoES_OMCT2013-1.jpg'
+                    ),
+                    array(
+                        'name' => 'CIDH',
+                        'full' => 'Comisión Interamericana de Derechos Humanos',
+                        'url' => 'https://www.oas.org/es/cidh/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/cidh.jpg'
+                    ),
+                    array(
+                        'name' => 'AMNISTIA',
+                        'full' => 'Amnistía Internacional',
+                        'url' => 'https://www.amnesty.org/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/amnistia.jpg'
+                    ),
+                    array(
+                        'name' => 'IIDH',
+                        'full' => 'Instituto Interamericano de Derechos Humanos',
+                        'url' => 'https://www.iidh.ed.cr/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/iidh.jpg'
+                    ),
+                    array(
+                        'name' => 'HRW',
+                        'full' => 'Human Rights Watch',
+                        'url' => 'https://www.hrw.org/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/human-rw.jpg'
+                    ),
+                    array(
+                        'name' => 'FRONTLINE',
+                        'full' => 'Front Line Defenders',
+                        'url' => 'https://www.frontlinedefenders.org/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/frontline.jpg'
+                    ),
+                    array(
+                        'name' => 'FIDH',
+                        'full' => 'Federación Internacional por los Derechos Humanos',
+                        'url' => 'https://www.fidh.org/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/fidh.jpg'
+                    ),
+                    array(
+                        'name' => 'Corte IDH',
+                        'full' => 'Corte Interamericana de Derechos Humanos',
+                        'url' => 'https://www.corteidh.or.cr/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/corte-int.jpg'
+                    ),
+                    array(
+                        'name' => 'CICR',
+                        'full' => 'Comité Internacional de la Cruz Roja',
+                        'url' => 'https://www.icrc.org/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/cicr.jpg'
+                    ),
+                    array(
+                        'name' => 'CEJIL',
+                        'full' => 'Centro por la Justicia y el Derecho Internacional',
+                        'url' => 'https://cejil.org/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/cejil.jpg'
+                    ),
+                    array(
+                        'name' => 'APT',
+                        'full' => 'Asociación para la Prevención de la Tortura',
+                        'url' => 'https://www.apt.ch/',
+                        'logo' => 'https://oveprisiones.com/wp-content/uploads/2026/06/apt.jpg'
+                    )
                 );
                 for ($dup = 0; $dup < 2; $dup++) :
                     foreach ($ongs as $ong) :
                 ?>
                     <a href="<?php echo esc_url($ong['url']); ?>" target="_blank" class="flex-shrink-0 w-[200px] group">
-                        <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-lg transition-all">
-                            <div class="w-20 h-20 mx-auto bg-slate-100 dark:bg-white/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-50 dark:group-hover:bg-blue-600/10 transition-colors">
-                                <span class="text-2xl font-black text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors"><?php echo esc_html($ong['name']); ?></span>
+                        <div class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-center hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center">
+                            <div class="w-20 h-20 bg-white dark:bg-white/5 rounded-2xl flex items-center justify-center p-2 mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden shadow-inner border border-slate-100 dark:border-white/5">
+                                <?php if (!empty($ong['logo'])) : ?>
+                                    <img src="<?php echo esc_url($ong['logo']); ?>" class="max-h-full max-w-full object-contain filter dark:brightness-95" alt="<?php echo esc_attr($ong['name']); ?>">
+                                <?php else : ?>
+                                    <span class="text-2xl font-black text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors"><?php echo esc_html($ong['name']); ?></span>
+                                <?php endif; ?>
                             </div>
-                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 leading-tight"><?php echo esc_html($ong['full']); ?></p>
+                            <p class="text-xs font-bold text-slate-900 dark:text-white leading-tight min-h-[32px] flex items-center justify-center"><?php echo esc_html($ong['name']); ?></p>
                         </div>
                     </a>
                 <?php endforeach; endfor; ?>
@@ -60,21 +122,27 @@ get_header(); ?>
 
         <style>
             @keyframes ong-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-            .ong-marquee { animation: ong-scroll 50s linear infinite; width: max-content; }
+            .ong-marquee { animation: ong-scroll 45s linear infinite; width: max-content; }
             .ong-marquee:hover { animation-play-state: paused; }
         </style>
 
         <!-- Full Grid -->
         <div class="container mx-auto px-6">
             <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-8 text-center">Directorio Completo</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
                 <?php foreach ($ongs as $ong) : ?>
-                    <a href="<?php echo esc_url($ong['url']); ?>" target="_blank" class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-center hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-lg transition-all group">
-                        <div class="w-16 h-16 mx-auto bg-slate-100 dark:bg-white/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
-                            <span class="text-xl font-black text-slate-600 dark:text-slate-300 group-hover:text-white transition-colors"><?php echo esc_html($ong['name']); ?></span>
+                    <a href="<?php echo esc_url($ong['url']); ?>" target="_blank" class="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-center hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-lg transition-all group flex flex-col justify-between items-center">
+                        <div class="w-full flex flex-col items-center">
+                            <div class="w-16 h-16 bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-xl flex items-center justify-center p-2 mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden shadow-sm">
+                                <?php if (!empty($ong['logo'])) : ?>
+                                    <img src="<?php echo esc_url($ong['logo']); ?>" class="max-h-full max-w-full object-contain filter dark:brightness-95" alt="<?php echo esc_attr($ong['name']); ?>">
+                                <?php else : ?>
+                                    <span class="text-xl font-black text-slate-600 dark:text-slate-300 group-hover:text-blue-600 transition-colors"><?php echo esc_html($ong['name']); ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <h4 class="text-xs font-bold text-slate-900 dark:text-white leading-tight text-center line-clamp-2"><?php echo esc_html($ong['full']); ?></h4>
                         </div>
-                        <h4 class="text-sm font-bold text-slate-900 dark:text-white"><?php echo esc_html($ong['full']); ?></h4>
-                        <span class="inline-flex items-center gap-1 text-blue-600 text-xs font-medium mt-3 group-hover:gap-2 transition-all">
+                        <span class="inline-flex items-center gap-1 text-blue-600 text-xs font-medium mt-4 group-hover:gap-2 transition-all">
                             Visitar
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
                         </span>

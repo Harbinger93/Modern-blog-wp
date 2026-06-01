@@ -27,7 +27,7 @@
 
             <!-- Reglas Mandela CTA -->
             <div class="lg:w-1/3 w-full">
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2.5rem] text-center group cursor-pointer hover:bg-white/10 transition-all duration-500" onclick="document.getElementById('modal-mandela').classList.remove('hidden', 'opacity-0')">
+                <a href="https://oveprisiones.com/informes/reglas-mandela/" class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2.5rem] text-center block group hover:bg-white/10 transition-all duration-500">
                     <div class="relative mb-6 inline-block">
                         <img src="https://oveprisiones.com/wp-content/uploads/2016/11/Reglas-Mandela200x300.png" class="h-64 w-auto rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-500" alt="Reglas Mandela">
                         <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
@@ -37,7 +37,7 @@
                     <h3 class="text-xl font-black text-white mb-2">Reglas Mandela</h3>
                     <p class="text-slate-400 text-sm mb-6">Reglas Mínimas de las Naciones Unidas para el Tratamiento de los Reclusos.</p>
                     <span class="inline-flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-widest">Ver Documento →</span>
-                </div>
+                </a>
             </div>
         </div>
     </div>

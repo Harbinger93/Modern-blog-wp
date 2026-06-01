@@ -11,7 +11,7 @@ get_header(); ?>
 <main id="primary" class="site-main">
     
     <!-- 1. HERO SLIDER -->
-    <section class="relative h-[90vh] bg-slate-900 overflow-hidden">
+    <section class="relative h-[90vh] bg-slate-900 overflow-hidden ">
         <div class="absolute inset-0">
             <?php
             $hero_query = new WP_Query(array('posts_per_page' => 4, 'post_status' => 'publish'));
@@ -120,17 +120,44 @@ get_header(); ?>
                 if ($news->have_posts()) :
                     while ($news->have_posts()) : $news->the_post();
                 ?>
-                    <article class="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20 transition-all duration-300">
-                        <div class="aspect-[16/10] overflow-hidden">
-                            <?php the_post_thumbnail('large', array('class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500')); ?>
-                        </div>
-                        <div class="p-6">
-                            <time class="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider"><?php echo get_the_date(); ?></time>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-2 leading-snug group-hover:text-blue-600 transition-colors">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mt-3 line-clamp-2"><?php echo wp_trim_words(get_the_excerpt(), 18); ?></p>
-                        </div>
+                    <article class="group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 aspect-[4/5] sm:aspect-square md:aspect-[4/5] lg:aspect-[3/4]">
+                        <a href="<?php the_permalink(); ?>" class="absolute inset-0 block">
+                            <!-- Background Image -->
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('large', array('class' => 'absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700')); ?>
+                            <?php else : ?>
+                                <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-blue-600/30 text-5xl font-black">OVP</div>
+                            <?php endif; ?>
+                            
+                            <!-- Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:via-black/50 transition-colors duration-500"></div>
+                            
+                            <!-- Content -->
+                            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                                <div class="transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="text-[10px] font-bold text-white uppercase tracking-wider px-2.5 py-1 bg-blue-600/90 backdrop-blur-md rounded-md">
+                                            <?php 
+                                            $cats = get_the_category();
+                                            echo !empty($cats) ? esc_html($cats[0]->name) : 'Noticia';
+                                            ?>
+                                        </span>
+                                        <time class="text-[11px] font-medium text-white/80 uppercase tracking-wider drop-shadow-md"><?php echo get_the_date(); ?></time>
+                                    </div>
+                                    <h3 class="text-xl md:text-2xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors drop-shadow-lg">
+                                        <?php the_title(); ?>
+                                    </h3>
+                                    <p class="text-slate-200 text-sm mt-3 line-clamp-2 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block drop-shadow-md">
+                                        <?php echo wp_trim_words(get_the_excerpt(), 18); ?>
+                                    </p>
+                                    <div class="mt-4 md:opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 hidden sm:block">
+                                        <span class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 uppercase tracking-widest hover:text-blue-300 transition-colors">
+                                            Leer más <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </article>
                 <?php endwhile; wp_reset_postdata(); endif; ?>
             </div>
@@ -169,85 +196,14 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- 6. AREAS DE INTERES (Líneas de Acción) -->
-    <section class="py-20 bg-slate-50 dark:bg-[#070e1e]">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Áreas</span>
-                <h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mt-1">Líneas de Acción</h2>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <?php
-                $areas = array(
-                    array('icon' => '<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>', 'title' => 'Informes Técnicos'),
-                    array('icon' => '<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9-9-1.8-9-9 1.8-9 9-9z"/><path d="M8 12h8M12 8v8"/></svg>', 'title' => 'Denuncias'),
-                    array('icon' => '<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>', 'title' => 'Multimedia'),
-                    array('icon' => '<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>', 'title' => 'Mapa de Cárceles'),
-                );
-                foreach ($areas as $area) :
-                ?>
-                    <div class="spotlight-card group relative bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center transition-all duration-500 overflow-hidden cursor-pointer hover:-translate-y-2">
-                        <div class="spotlight-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background: radial-gradient(600px circle at var(--x) var(--y), rgba(37, 99, 235, 0.15), transparent 40%);"></div>
-                        <div class="relative z-10">
-                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-blue-50 dark:bg-blue-600/10 text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110 transition-all duration-500">
-                                <?php echo $area['icon']; ?>
-                            </div>
-                            <h4 class="text-sm font-bold text-slate-900 dark:text-white"><?php echo $area['title']; ?></h4>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
 
-    <!-- 7. BOLETIN -->
-    <section class="py-20 bg-white dark:bg-[#050b18]">
-        <div class="container mx-auto px-6">
-            <div class="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-[#0a1628] dark:to-[#071020] rounded-3xl p-10 md:p-16 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
-                <div class="relative z-10 lg:w-1/2 space-y-6">
-                    <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight">Boletín <span class="text-blue-400">Informativo</span></h2>
-                    <p class="text-slate-400 leading-relaxed">Recibe alertas, informes y noticias sobre la situación penitenciaria en Venezuela.</p>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="email" placeholder="Tu correo electrónico" class="flex-1 bg-white/10 border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm placeholder-slate-500 outline-none focus:border-blue-500 transition-colors">
-                        <button class="px-8 py-3.5 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/25">Suscribirme</button>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 relative z-10">
-                    <img src="https://images.unsplash.com/photo-1496065187959-7f07b8353c55?auto=format&fit=crop&q=80&w=800" class="rounded-2xl shadow-2xl border border-white/10" alt="Boletín OVP">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 8. PUBLICACIONES ESPECIALIZADAS -->
-    <section class="py-16 bg-slate-50 dark:bg-[#070e1e]">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Publicaciones Especializadas</h2>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                <?php
-                $pubs = array(
-                    array('icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>', 'label' => 'Libros'),
-                    array('icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2"/></svg>', 'label' => 'Revistas'),
-                    array('icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>', 'label' => 'Guías'),
-                    array('icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>', 'label' => 'Trifolios'),
-                    array('icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>', 'label' => 'Otros'),
-                );
-                foreach ($pubs as $pub) :
-                ?>
-                    <div class="spotlight-card group relative bg-transparent border border-slate-200 dark:border-white/10 rounded-xl px-6 py-5 transition-all duration-500 overflow-hidden cursor-pointer hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(37,99,235,0.1)]">
-                        <div class="spotlight-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background: radial-gradient(400px circle at var(--x) var(--y), rgba(37, 99, 235, 0.1), transparent 40%);"></div>
-                        <div class="relative z-10 flex items-center gap-3">
-                            <div class="text-blue-600 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"><?php echo $pub['icon']; ?></div>
-                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors"><?php echo $pub['label']; ?></span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
+    <!-- 7. INFORME ANUAL -->
+    <?php get_template_part('template-parts/section-informe-anual'); ?>
+
+
+
+    
 
     <!-- 9. ASHOKA -->
     <section class="py-20 bg-white dark:bg-[#050b18]">

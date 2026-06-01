@@ -37,13 +37,11 @@ get_header(); ?>
                 <button data-filter="video"
                     class="media-tab px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-600/10 shrink-0 transition-all">Videos</button>
                 <button data-filter="capsulas"
-                    class="media-tab px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-600/10 shrink-0 transition-all">Cápsulas</button>
+                    class="media-tab px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-600/10 shrink-0 transition-all">Cápsulas Informativas</button>
                 <button data-filter="podcast"
                     class="media-tab px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-600/10 shrink-0 transition-all">Podcast</button>
-                <button data-filter="radio"
-                    class="media-tab px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-600/10 shrink-0 transition-all">Radio</button>
-                <button data-filter="fotos"
-                    class="media-tab px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-600/10 shrink-0 transition-all">Fotos</button>
+                <button data-filter="multimedia"
+                    class="media-tab px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-600/10 shrink-0 transition-all">Multimedia</button>
             </div>
         </div>
     </section>
@@ -52,7 +50,10 @@ get_header(); ?>
     <section id="featured-media" class="py-16 bg-white dark:bg-[#050b18]">
         <div class="container mx-auto px-6">
             <?php
-            $featured = new WP_Query(array('posts_per_page' => 1, 'category_name' => 'multimedia'));
+            $featured = new WP_Query(array(
+                'posts_per_page' => 1,
+                'category_name' => 'capsulas-informativas,multimedia,podcast,video'
+            ));
             if ($featured->have_posts()):
                 $featured->the_post();
                 ?>
@@ -87,7 +88,11 @@ get_header(); ?>
                     </div>
                     <div class="lg:col-span-2 flex flex-col gap-4">
                         <?php wp_reset_postdata();
-                        $sidebar = new WP_Query(array('posts_per_page' => 3, 'offset' => 1, 'category_name' => 'multimedia'));
+                        $sidebar = new WP_Query(array(
+                            'posts_per_page' => 3,
+                            'offset' => 1,
+                            'category_name' => 'capsulas-informativas,multimedia,podcast,video'
+                        ));
                         if ($sidebar->have_posts()):
                             while ($sidebar->have_posts()):
                                 $sidebar->the_post();
@@ -130,21 +135,56 @@ get_header(); ?>
                 Todo el Contenido</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="media-grid">
                 <?php
-                $media_types = array(
-                    array('type' => 'video', 'icon' => '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>', 'label' => 'Video', 'color' => 'bg-red-600'),
-                    array('type' => 'podcast', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>', 'label' => 'Podcast', 'color' => 'bg-purple-600'),
-                    array('type' => 'capsulas', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>', 'label' => 'Cápsula', 'color' => 'bg-amber-600'),
-                    array('type' => 'radio', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>', 'label' => 'Radio', 'color' => 'bg-emerald-600'),
-                    array('type' => 'fotos', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>', 'label' => 'Fotos', 'color' => 'bg-sky-600'),
-                    array('type' => 'video', 'icon' => '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>', 'label' => 'Video', 'color' => 'bg-red-600'),
-                );
-
-                $all_media = new WP_Query(array('posts_per_page' => 12, 'category_name' => 'multimedia'));
-                $mi = 0;
+                $all_media = new WP_Query(array(
+                    'posts_per_page' => 12,
+                    'category_name' => 'capsulas-informativas,multimedia,podcast,video'
+                ));
                 if ($all_media->have_posts()):
                     while ($all_media->have_posts()):
                         $all_media->the_post();
-                        $mt = $media_types[$mi % count($media_types)];
+                        $post_id = get_the_ID();
+                        
+                        $post_cats = get_the_category();
+                        $mt_type = 'multimedia'; // default fallback
+                        if (!empty($post_cats)) {
+                            foreach ($post_cats as $c) {
+                                if (in_array($c->slug, array('video', 'podcast', 'capsulas-informativas', 'multimedia'))) {
+                                    $mt_type = $c->slug;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        // Map to proper structural filters and displays
+                        $mt = array(
+                            'type' => 'multimedia',
+                            'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>',
+                            'label' => 'Multimedia',
+                            'color' => 'bg-blue-600'
+                        );
+                        
+                        if ($mt_type === 'video') {
+                            $mt = array(
+                                'type' => 'video',
+                                'icon' => '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',
+                                'label' => 'Video',
+                                'color' => 'bg-red-600'
+                            );
+                        } elseif ($mt_type === 'podcast') {
+                            $mt = array(
+                                'type' => 'podcast',
+                                'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>',
+                                'label' => 'Podcast',
+                                'color' => 'bg-purple-600'
+                            );
+                        } elseif ($mt_type === 'capsulas-informativas' || $mt_type === 'capsulas') {
+                            $mt = array(
+                                'type' => 'capsulas',
+                                'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>',
+                                'label' => 'Cápsula',
+                                'color' => 'bg-amber-600'
+                            );
+                        }
                         ?>
                         <article
                             class="media-item group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:shadow-xl transition-all"
@@ -178,7 +218,7 @@ get_header(); ?>
                                 </div>
                             </a>
                         </article>
-                        <?php $mi++; endwhile;
+                        <?php endwhile;
                     wp_reset_postdata(); endif; ?>
             </div>
         </div>

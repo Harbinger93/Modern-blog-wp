@@ -75,33 +75,6 @@
         </div>
     </section>
 
-    <!-- Widget: Double Row Horizontal Marquee (Tendencias) -->
-    <section class="widget">
-        <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6 px-4">Tendencias</h3>
-        <div class="space-y-3 overflow-hidden">
-            <!-- Row 1: Left -->
-            <div class="marquee-row-left flex gap-3">
-                <?php
-                $trending = new WP_Query(array('posts_per_page' => 6, 'orderby' => 'comment_count'));
-                $trending_posts = array_merge($trending->posts, $trending->posts);
-                foreach($trending_posts as $post) : ?>
-                    <a href="<?php echo get_permalink($post->ID); ?>" class="px-5 py-3 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold whitespace-nowrap hover:border-blue-500 transition-colors">
-                        # <?php echo wp_trim_words(get_the_title($post->ID), 4, ''); ?>
-                    </a>
-                <?php endforeach; wp_reset_postdata(); ?>
-            </div>
-            <!-- Row 2: Right -->
-            <div class="marquee-row-right flex gap-3">
-                <?php
-                foreach($trending_posts as $post) : ?>
-                    <a href="<?php echo get_permalink($post->ID); ?>" class="px-5 py-3 rounded-full bg-blue-600 text-white text-xs font-bold whitespace-nowrap hover:bg-blue-700 transition-colors">
-                        <?php echo wp_trim_words(get_the_title($post->ID), 3, ''); ?> →
-                    </a>
-                <?php endforeach; wp_reset_postdata(); ?>
-            </div>
-        </div>
-    </section>
-
     <!-- Widget: High Impact Report CTA -->
     <section class="widget relative rounded-[2.5rem] overflow-hidden bg-slate-900 group">
         <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" alt="Informe">
@@ -110,7 +83,7 @@
             <span class="px-3 py-1 bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full mb-6">Nuevo Informe</span>
             <h3 class="text-2xl font-black text-white leading-tight mb-4 tracking-tighter">Situación Carcelaria en Venezuela 2026</h3>
             <p class="text-white/70 text-sm mb-8 font-medium">Un análisis profundo sobre los DDHH y las condiciones del sistema penitenciario.</p>
-            <a href="<?php echo home_url('/publicaciones'); ?>" class="w-full py-4 bg-white text-blue-600 font-bold rounded-2xl hover:scale-105 transition-transform shadow-2xl">Descargar Ahora</a>
+            <a href="<?php echo home_url('/biblioteca'); ?>" class="w-full py-4 bg-white text-blue-600 font-bold rounded-2xl hover:scale-105 transition-transform shadow-2xl">Descargar Ahora</a>
         </div>
     </section>
 
