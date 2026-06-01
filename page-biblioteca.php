@@ -179,7 +179,7 @@ $filter_tipo_param = isset($_GET['tipo']) ? sanitize_text_field($_GET['tipo']) :
      BIBLIOTECA PAGE — Light/Dark mode adaptive + Blurred hero image
      ===================================================================== -->
 <main id="primary"
-    class="site-main min-h-screen bg-slate-100 dark:bg-[#02060f] text-slate-800 dark:text-slate-100 font-sans pb-20 overflow-hidden transition-colors duration-300"
+    class="site-main min-h-screen bg-slate-100 dark:bg-[#02060f] text-slate-800 dark:text-slate-100 font-sans pb-20 overflow-hidden transition-colors duration-300 relative"
     style="padding-top: 7rem;">
 
     <!-- Decorative background glows (dark mode only) -->

@@ -58,7 +58,7 @@ get_header(); ?>
                 $featured->the_post();
                 ?>
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
-                    <div class="lg:col-span-3 relative rounded-2xl overflow-hidden group cursor-pointer border border-slate-200 dark:border-white/10"
+                    <a href="<?php the_permalink(); ?>" class="lg:col-span-3 relative rounded-2xl overflow-hidden group cursor-pointer border border-slate-200 dark:border-white/10 block"
                         data-type="video">
                         <div class="aspect-video">
                             <?php if (has_post_thumbnail()): ?>
@@ -85,7 +85,7 @@ get_header(); ?>
                             <h2 class="text-2xl md:text-3xl font-bold text-white leading-tight"><?php the_title(); ?></h2>
                             <time class="text-white/50 text-sm mt-2 block"><?php echo get_the_date(); ?></time>
                         </div>
-                    </div>
+                    </a>
                     <div class="lg:col-span-2 flex flex-col gap-4">
                         <?php wp_reset_postdata();
                         $sidebar = new WP_Query(array(
