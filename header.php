@@ -256,12 +256,12 @@
 							</button>
 							<div id="search-input-container" class="absolute right-0 top-1/2 -translate-y-1/2 w-0 overflow-hidden transition-all duration-300 opacity-0">
 								<form role="search" method="get" action="<?php echo home_url('/'); ?>">
-									<input type="text" id="search-input" name="s" placeholder="Buscar..." class="w-64 lg:w-80 bg-white dark:bg-[#0d1b32] border border-blue-500 rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-white outline-none shadow-xl">
+									<input type="text" id="search-input" name="s" placeholder="Buscar..." class="w-full bg-white dark:bg-[#0d1b32] border border-blue-500 rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-white outline-none shadow-xl">
 								</form>
 							</div>
 						</div>
 						<!-- Results Dropdown -->
-						<div id="search-results" class="absolute top-full right-0 mt-4 w-80 lg:w-96 bg-white dark:bg-[#0d1b32] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible transition-all z-[110]">
+						<div id="search-results" class="absolute top-full right-0 mt-4 w-[85vw] max-w-[320px] sm:w-80 lg:w-96 bg-white dark:bg-[#0d1b32] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible transition-all z-[110]">
 							<div id="results-container" class="max-h-[400px] overflow-y-auto p-2">
 								<!-- Results will appear here -->
 							</div>
@@ -337,11 +337,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			var isOpen = !searchInputContainer.classList.contains('opacity-0');
 			if (!isOpen) {
 				searchInputContainer.classList.remove('w-0', 'opacity-0');
-				searchInputContainer.classList.add('w-64', 'lg:w-80', 'opacity-100');
+				searchInputContainer.classList.add('w-[42vw]', 'min-w-[140px]', 'sm:w-64', 'lg:w-80', 'opacity-100');
 				searchInput.focus();
 			} else {
 				searchInputContainer.classList.add('w-0', 'opacity-0');
-				searchInputContainer.classList.remove('w-64', 'lg:w-80', 'opacity-100');
+				searchInputContainer.classList.remove('w-[42vw]', 'min-w-[140px]', 'sm:w-64', 'lg:w-80', 'opacity-100');
 				searchResults.classList.add('opacity-0', 'invisible');
 			}
 		});
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				searchResults.classList.add('opacity-0', 'invisible');
 				if (searchInput.value === '') {
 					searchInputContainer.classList.add('w-0', 'opacity-0');
-					searchInputContainer.classList.remove('w-64', 'lg:w-80', 'opacity-100');
+					searchInputContainer.classList.remove('w-[42vw]', 'min-w-[140px]', 'sm:w-64', 'lg:w-80', 'opacity-100');
 				}
 			}
 		});
