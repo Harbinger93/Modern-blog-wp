@@ -214,8 +214,8 @@
 
 				<!-- Branding -->
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="flex items-center gap-2.5 shrink-0 group">
-					<img src="https://oveprisiones.com/wp-content/uploads/2016/09/logo-e1473295394529.png" class="h-16 w-auto block dark:hidden" alt="OVP">
-					<img src="https://oveprisiones.com/wp-content/uploads/2016/12/OVPlogo_blanco320x99-1.png" class="h-16 w-auto hidden dark:block" alt="OVP">
+					<img src="https://oveprisiones.com/wp-content/uploads/2016/09/logo-e1473295394529.png" class="h-9 xs:h-10 sm:h-12 md:h-16 w-auto block dark:hidden" alt="OVP">
+					<img src="https://oveprisiones.com/wp-content/uploads/2016/12/OVPlogo_blanco320x99-1.png" class="h-9 xs:h-10 sm:h-12 md:h-16 w-auto hidden dark:block" alt="OVP">
 				</a>
 
 				<!-- Desktop Navigation -->
@@ -286,28 +286,37 @@
 
 		<!-- Mobile Overlay -->
 		<div id="mobile-menu-overlay" class="fixed inset-0 bg-white/95 dark:bg-[#050b18]/95 backdrop-blur-2xl z-[120] opacity-0 invisible transition-all duration-300 lg:hidden flex flex-col">
-			<div class="flex justify-between items-center p-6">
-				<div class="flex gap-4">
-					<a href="#" class="text-slate-400 hover:text-blue-600"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-					<a href="#" class="text-slate-400 hover:text-blue-600"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+			<div class="flex justify-between items-center p-6 border-b border-slate-100 dark:border-white/5">
+				<div class="flex items-center gap-3">
+					<a href="https://x.com/oveprisiones" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="X (Twitter)">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+					</a>
+					<a href="https://www.facebook.com/ObservatorioVenezolanoDePrisionesOVP" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Facebook">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+					</a>
+					<a href="https://www.instagram.com/oveprisiones/" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Instagram">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+					</a>
+					<a href="https://www.youtube.com/@observatoriovenezolanodepr4992" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="YouTube">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+					</a>
 				</div>
-				<button id="mobile-menu-close" class="p-3 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white">
+				<button id="mobile-menu-close" class="p-3 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white hover:text-blue-600 transition-colors">
 					<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
 				</button>
 			</div>
-			<div class="flex items-center px-8 mb-8">
+			<div class="flex items-center px-8 mt-8 mb-6">
 				<form role="search" method="get" action="<?php echo home_url('/'); ?>" class="w-full">
 					<input type="text" name="s" placeholder="Buscar..." class="w-full bg-slate-100 dark:bg-white/5 border border-transparent focus:border-blue-500 rounded-xl px-5 py-4 text-slate-900 dark:text-white outline-none">
 				</form>
 			</div>
-			<div class="flex-1 flex items-center justify-center p-8 overflow-y-auto">
-				<?php
-				wp_nav_menu( array(
-					'theme_location' => 'primary',
-					'container'      => false,
-					'menu_class'     => 'flex flex-col gap-6 text-center text-3xl font-black uppercase tracking-tight text-slate-900 dark:text-white',
-				) );
-				?>
+			<div class="flex-1 flex flex-col items-center justify-center gap-6 p-8 overflow-y-auto">
+				<a href="<?php echo home_url(); ?>" class="text-3xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_front_page() ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Inicio</a>
+				<a href="<?php echo home_url('/nosotros'); ?>" class="text-3xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('nosotros') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Nosotros</a>
+				<a href="<?php echo home_url('/noticias'); ?>" class="text-3xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('noticias') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Noticias</a>
+				<a href="<?php echo home_url('/biblioteca'); ?>" class="text-3xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page_template('page-biblioteca.php') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Biblioteca</a>
+				<a href="<?php echo home_url('/ong'); ?>" class="text-3xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('ong') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">ONG</a>
+				<a href="<?php echo home_url('/multimedia'); ?>" class="text-3xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('multimedia') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Multimedia</a>
 			</div>
 		</div>
 	</header>
