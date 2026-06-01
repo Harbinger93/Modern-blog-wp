@@ -201,7 +201,7 @@
 		#search-input-container.search-open {
 			opacity: 1 !important;
 			visibility: visible !important;
-			width: 100% !important;
+			width: calc(100% - 32px) !important;
 		}
 		@media (min-width: 1024px) {
 			#search-input-container.search-open {
@@ -287,20 +287,20 @@
 							<button id="search-trigger" class="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-all">
 								<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
 							</button>
-							<div id="search-input-container" class="fixed top-[88px] inset-x-4 w-0 opacity-0 invisible lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-0 lg:left-auto lg:w-0 lg:inset-x-auto bg-white/95 dark:bg-[#0a1628]/95 backdrop-blur-xl border border-slate-200/60 dark:border-white/10 rounded-2xl p-3 lg:p-0 lg:bg-transparent lg:border-0 lg:rounded-none lg:backdrop-blur-none lg:shadow-none shadow-2xl overflow-hidden z-[115]">
+							<div id="search-input-container" class="fixed top-[88px] inset-x-4 w-0 opacity-0 invisible lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-0 lg:left-auto lg:w-0 lg:inset-x-auto bg-white/95 dark:bg-[#0a1628]/95 backdrop-blur-xl border border-slate-200/60 dark:border-white/10 rounded-2xl p-3 lg:p-0 lg:bg-transparent lg:border-0 lg:rounded-none lg:backdrop-blur-none lg:shadow-none shadow-2xl overflow-visible z-[115]">
 								<form role="search" method="get" action="<?php echo home_url('/'); ?>">
 									<input type="text" id="search-input" name="s" placeholder="Buscar..." class="w-full bg-white dark:bg-[#0d1b32] border border-blue-500 rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-white outline-none shadow-xl">
 								</form>
+								<!-- Results Dropdown nested INSIDE -->
+								<div id="search-results" class="absolute top-[calc(100%+8px)] left-0 right-0 w-full bg-white dark:bg-[#0d1b32] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible transition-all z-[110] lg:right-0 lg:left-auto lg:w-96">
+									<div id="results-container" class="max-h-[400px] overflow-y-auto p-2">
+										<!-- Results will appear here -->
+									</div>
+									<a id="search-view-more" href="#" class="block p-3 text-center text-xs font-bold text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-600/10 border-t border-slate-100 dark:border-white/5 transition-colors">
+										Ver todos los resultados
+									</a>
+								</div>
 							</div>
-						</div>
-						<!-- Results Dropdown -->
-						<div id="search-results" class="absolute top-full left-0 right-0 mt-3 w-full bg-white dark:bg-[#0d1b32] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible transition-all z-[110] lg:right-0 lg:left-auto lg:w-96">
-							<div id="results-container" class="max-h-[400px] overflow-y-auto p-2">
-								<!-- Results will appear here -->
-							</div>
-							<a id="search-view-more" href="#" class="block p-3 text-center text-xs font-bold text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-600/10 border-t border-slate-100 dark:border-white/5 transition-colors">
-								Ver todos los resultados
-							</a>
 						</div>
 					</div>
 
@@ -320,20 +320,7 @@
 		<!-- Mobile Overlay -->
 		<div id="mobile-menu-overlay" class="fixed top-[88px] inset-x-4 max-h-[calc(100vh-110px)] bg-white/90 dark:bg-[#0a1628]/90 backdrop-blur-xl border border-slate-200/60 dark:border-white/10 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 invisible z-[120] lg:hidden flex flex-col overflow-hidden">
 			<div class="flex justify-between items-center p-5 border-b border-slate-100 dark:border-white/5">
-				<div class="flex items-center gap-2">
-					<a href="https://x.com/oveprisiones" target="_blank" rel="noopener" class="p-1.5 text-slate-400 hover:text-blue-600 transition-colors" title="X (Twitter)">
-						<svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-					</a>
-					<a href="https://www.facebook.com/ObservatorioVenezolanoDePrisionesOVP" target="_blank" rel="noopener" class="p-1.5 text-slate-400 hover:text-blue-600 transition-colors" title="Facebook">
-						<svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-					</a>
-					<a href="https://www.instagram.com/oveprisiones/" target="_blank" rel="noopener" class="p-1.5 text-slate-400 hover:text-blue-600 transition-colors" title="Instagram">
-						<svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
-					</a>
-					<a href="https://www.youtube.com/@observatoriovenezolanodepr4992" target="_blank" rel="noopener" class="p-1.5 text-slate-400 hover:text-blue-600 transition-colors" title="YouTube">
-						<svg class="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-					</a>
-				</div>
+				<span class="text-xs font-black uppercase tracking-widest text-slate-400">Navegación</span>
 				<button id="mobile-menu-close" class="p-2 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white hover:text-blue-600 transition-colors">
 					<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
 				</button>
@@ -352,13 +339,29 @@
 					</a>
 				</div>
 			</div>
-			<div class="flex-1 flex flex-col items-center justify-center gap-5 p-6 overflow-y-auto min-h-[300px]">
+			<div class="flex-grow flex flex-col items-center justify-center gap-5 p-6 overflow-y-auto min-h-[300px]">
 				<a href="<?php echo home_url(); ?>" class="text-2xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_front_page() ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Inicio</a>
 				<a href="<?php echo home_url('/nosotros'); ?>" class="text-2xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('nosotros') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Nosotros</a>
 				<a href="<?php echo home_url('/noticias'); ?>" class="text-2xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('noticias') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Noticias</a>
 				<a href="<?php echo home_url('/biblioteca'); ?>" class="text-2xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page_template('page-biblioteca.php') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Biblioteca</a>
 				<a href="<?php echo home_url('/ong'); ?>" class="text-2xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('ong') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">ONG</a>
 				<a href="<?php echo home_url('/multimedia'); ?>" class="text-2xl font-black uppercase tracking-tight hover:text-blue-600 transition-colors <?php echo is_page('multimedia') ? 'text-blue-600' : 'text-slate-900 dark:text-white'; ?>">Multimedia</a>
+				
+				<!-- Social Media Icons below the last item -->
+				<div class="flex items-center gap-4 mt-6 pt-6 border-t border-slate-100 dark:border-white/5 w-full justify-center">
+					<a href="https://x.com/oveprisiones" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="X (Twitter)">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+					</a>
+					<a href="https://www.facebook.com/ObservatorioVenezolanoDePrisionesOVP" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Facebook">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+					</a>
+					<a href="https://www.instagram.com/oveprisiones/" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Instagram">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+					</a>
+					<a href="https://www.youtube.com/@observatoriovenezolanodepr4992" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="YouTube">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+					</a>
+				</div>
 			</div>
 		</div>
 	</header>
